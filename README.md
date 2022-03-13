@@ -35,6 +35,7 @@ You need to register a new app against your O365 account with permission to read
   ```bash
   source venv/bin/activate && pip install -r requirements.txt
   ```
+* Initialise your O365 token by running ```python init_auth_token.py```. You only need to run this once.
 * Run this to check it works `/home/pi/O365CalendarPi/run.sh`
 * To update every 15 minutes, add the following line to /etc/crontab:
     ```bash
