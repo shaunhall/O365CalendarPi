@@ -43,6 +43,10 @@ You need to register a new app against your O365 account with permission to read
     ```
 * Note that it will only redraw on the screen when the data on the screen changes (this increases the lifetime of the screen).
 
+## `run.sh` arguments
+
+The `rotate` flag determines whether to rotate the display by 180 degrees or not (default is not). e.g.
+`./run.sh --rotate=True`
 
 ## Further Work
 

@@ -27,7 +27,7 @@ def suffix(day):
 def time_format(event):
     return event.strftime("%H:%M")
 
-def render(calendar: Calendar, debug=False):
+def render(calendar: Calendar, debug=False, rotate=False):
     if not debug:
         from waveshare_epd import epd2in13b_V3
     try:
@@ -84,6 +84,9 @@ def render(calendar: Calendar, debug=False):
                 draw = drawblack if i % 3 else drawry
                 draw.rectangle((x_top, y_top, x_top + block_width, y_top + block_width), outline=0, fill=0)
             y += line_height
+        if rotate:
+            HBlackimage = HBlackimage.rotate(180, Image.NEAREST, expand = 1)
+            HRYimage = HRYimage.rotate(180, Image.NEAREST, expand = 1)
         if not debug:
             epd.display(epd.getbuffer(HBlackimage), epd.getbuffer(HRYimage))
         else:

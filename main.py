@@ -1,11 +1,15 @@
-import datetime
+import argparse
 import logging
+import os
 
 import display
-from cal import Calendar
 from cal_fetcher import CalendarFetcher
 from creds import credentials
-import os
+
+parser = argparse.ArgumentParser(description='Render your O365 calendar on a pi')
+parser.add_argument('--rotate', default=False,
+                    help='rotate the display by 180 degrees')
+args = parser.parse_args()
 
 state_path = "./state_hash.txt"
 def is_new_state(state):
@@ -25,7 +29,7 @@ calendar = fetcher.fetch_calendar()
 state = str(hash(calendar))
 if is_new_state(state):
     write_state(state)
-    display.render(calendar)
+    display.render(calendar, rotate=args.rotate)
 else:
     logging.info("No change to calendar")
 # from event import Event
